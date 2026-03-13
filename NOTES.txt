@@ -1,0 +1,562 @@
+JavaScript (JS) ek programming language hai jo mainly web pages ko dynamic aur interactive banane ke liye use hoti hai.
+
+HTML → page ka structure banata hai
+
+CSS → page ko design karta hai
+
+JavaScript → page ko interactive / dynamic banata hai
+
+
+
+Variables in JavaScript -
+
+Variable ek container hota hai jo data store karne ke liye use hota hai.
+JavaScript me 3 tarike se variables declare kiye jaate hain:-
+var 
+let 
+const 
+
+
+1. var-
+Purana tarika hai variable declare karne ka.
+
+Characteristics:
+
+Re-declare allowed
+Re-assign allowed
+Function scoped
+
+var x = 10
+var x = 20
+x = 30
+all allowed
+
+
+
+2. let
+Modern JavaScript me mostly let use hota hai.
+
+Characteristics:
+
+Re-declare NOT allowed
+Re-assign allowed
+Block scoped
+
+let a = 10;
+a = 5; this is allowed
+let a = 30; this will give u the error 
+
+
+3. const
+Value change nahi ho sakti.
+
+Characteristics:
+
+Re-declare NOT allowed
+Re-assign NOT allowed
+Block scoped
+
+
+
+NULL AND UNDEFINED - 
+
+undefined basically means variable declare hua h but usme abhi koi value assign nahi hui h 
+let x ;
+console.log(x) = undefined
+
+nul ka matlab hota h intentionally empty value dena 
+let a = null ;
+console.log(a) = null 
+
+means programmer ne khud hi empty value assign krdii 
+
+let a;
+let b = null;
+
+console.log(a); // undefined
+console.log(b); // null
+
+
+
+
+
+
+DATATYPES INSIDE THE JS - 
+
+1️⃣ Primitive Data Types
+2️⃣ Non-Primitive (Reference) Data Types
+
+
+Primitives - 
+Ye single value store karte hain
+
+1. Number-
+Numbers store karta hai (integer + decimal dono).
+
+let a = 10;
+let b = 3.14;
+
+2. String
+Text store karta hai.
+
+let name = "Satyam";
+let city = 'Delhi';
+
+3. Boolean
+Sirf true ya false.
+
+let isLoggedIn = true;
+let isAdmin = false;
+
+
+4. Undefined
+Varible declare hua hai but value assign nahi hui.
+
+let x;
+console.log(x);
+
+
+
+5. Null
+
+Intentional empty value.
+let data = null;
+
+6. BigInt
+
+Bahut bade numbers store karne ke liye.
+let num = 12345678901234567890n;
+
+
+
+
+
+2️⃣ Non-Primitive (Reference Type) =
+
+Ye multiple values store kar sakte hain.
+
+Object-
+let user = {
+  name: "Satyam",
+  age: 21
+};
+
+
+
+Array
+let arr = [10, 20, 30];
+
+Function
+function greet() {
+  console.log("Hello");
+}
+
+
+Primitive-
+Number
+String
+Boolean
+Undefined
+Null
+BigInt
+Symbol
+
+
+Non-Primitive= 
+Object
+Array
+Function
+
+
+
+accessing the elements of the object - \
+let user = {
+    name : "Satyam",
+    age : 19,
+    city : "Saharanpur"
+}
+console.log(user.age)
+console.log(user["age])
+let key = "name";
+consol.log(user[key]);
+
+
+
+
+OPERATORS INSIDE THE JS 
+1️⃣ Arithmetic Operators
+
+let a = 10;
+let b = 5;
+
+console.log(a + b); // addition
+console.log(a - b); // subtraction
+console.log(a * b); // multiplication
+console.log(a / b); // division
+console.log(a % b); // remainder
+console.log(a ** b); // power
+
+2️⃣ Assignment Operators
+let x = 10;
+
+x += 5;  // x = x + 5
+x -= 2;  // x = x - 2
+x *= 3;  // x = x * 3
+x /= 2;  // x = x / 2
+
+
+3️⃣ Comparison Operators
+let a = 10;
+let b = 5;
+
+console.log(a > b);
+console.log(a < b);
+console.log(a >= b);
+console.log(a <= b);
+
+Equality operators
+console.log(5 == "5");   // true
+console.log(5 === "5");  // false
+
+
+==  → value check
+=== → value + type check                                      VERY IMPORTANT PART 
+
+
+4️⃣ Logical Operators
+let age = 20;
+
+console.log(age > 18 && age < 30);
+console.log(age > 25 || age < 30);
+console.log(!(age > 18));
+
+
+
+5️⃣ Increment / Decrement
+let x = 5;
+
+x++; // increment
+x--; // decrement
+
+
+
+LOOPS INSIDE THE JAVA - 
+1️⃣ for loop
+
+Jab hume pata ho kitni baar loop chalana hai, tab for loop use karte hain.
+for(let i = 1; i <= 5; i++){
+    console.log(i);
+}
+
+
+2️⃣ while loop
+Jab tak condition true hai, loop chalta rahega.
+let i = 1;
+
+while(i <= 5){
+    console.log(i);
+    i++;
+}
+
+
+3️⃣ do...while loop
+Isme code ek baar to zaroor chalega, chahe condition false hi kyu na ho.
+do{
+   code
+}while(condition)
+
+
+
+!== strict comparison karta hai → value + type dono check karta hai.
+"25" !== 25
+So JS ke hisab se:
+Ye true ho jata hai kyunki
+
+string ≠ number
+
+
+
+
+
+
+STRINGS  - 
+strings are sequences of characters used to represent text. They’re one of the fundamental data types and can include letters, numbers, symbols, and even spaces. You usually wrap them in quotes:
+
+Single quotes: 'Hello
+Double quotes: "Hello"
+Template literals (backticks): `Hello ${name}`
+
+📌 Immutable: Once created, a string cannot be changed directly. Operations like .toUpperCase() or .replace() return a new string instead of modifying the original.
+
+
+
+Common String Operations
+
+Length-
+
+let str = "JavaScript";
+console.log(str.length);
+
+
+
+Access characters-
+
+Index 0 se start hota hai.
+let str = "Hello";
+
+console.log(str[0]); 
+console.log(str[1]);
+
+
+String Methods
+
+let str = "hello";
+console.log(str.toUpperCase());
+
+2️⃣ toLowerCase()-
+
+let str = "HELLO";
+console.log(str.toLowerCase());
+
+
+3️⃣ trim()
+let str = "   hello   ";
+console.log(str.trim());
+
+
+4️⃣ slice()
+
+String ka part nikalta hai.
+let str = "JavaScript";
+console.log(str.slice(0,4));
+
+
+
+6️⃣ replace()
+let str = "Hello World";
+console.log(str.replace("World","JS"));
+
+
+
+7️⃣ charAt()
+let str = "Hello";
+console.log(str.charAt(2));
+
+
+
+
+
+Template Literals - 
+let name = "Satyam"
+let topic = `Hello ${name}`;
+console.log(topic)
+
+
+
+Template Literals ka biggest advantage-
+
+1st method = 
+
+let name = "Satyam";
+let age = 21;
+console.log("My name is " + name + " and age is " + age);
+
+console.log(`My name is ${name} and age is ${age}`);
+
+
+
+
+
+Arrays in JS -
+
+Array ek data structure hai jo multiple values ko ek single variable ke andar store karta hai.
+
+let numbers = [10, 20, 30, 40];
+
+
+let fruits = ["apple", "banana", "mango"];
+
+console.log(fruits[0]);
+console.log(fruits[1]);
+console.log(fruits[2]);
+
+
+let arr = [10,20,30];
+arr[1] = 50;
+console.log(arr); -> [10,50,30]
+
+
+Length of Array= console.log(array.length)
+
+
+Arrays can store different data types - 
+JavaScript arrays heterogeneous hote hain (different types store kar sakte hain).
+
+let data = [10, "Satyam", true, 3.5];
+
+
+
+for let loop on the java  - 
+
+for (let value of array) {
+   // code
+}
+
+
+let numbers = [10, 20, 30, 40];
+
+for (let value of numbers) {
+    console.log(value);
+}
+
+10
+20
+30
+40
+
+
+
+
+Functions in the JS - 
+
+Function ek block of code hota hai jo kisi specific kaam ko perform karta hai.
+Usse hum bar-bar call karke reuse kar sakte hain.
+
+function functionName(parameters) {
+   // code
+}
+
+function greet(){
+    console.log("Hello world");
+}
+
+function add(a, b) {
+    console.log(a + b);
+}
+
+add(5, 3);
+
+3️⃣ Function with Return Value - 
+function multiply(a, b) {
+    return a * b;
+}
+let result = multiply(4, 3);
+
+console.log(result);
+
+
+
+MODERN JAVA SCRIPT USES THE ARROW FUNCTIONS - 
+
+const add = (a, b) => {
+    return a + b;
+}
+
+console.log(add(5,3));
+
+
+
+
+
+
+
+foreach loop in the js arrays
+
+foreach is the array method jo array ke har eke element par ek function run karta h 
+
+Callback function = Aisa function jo doosre function ke andar argument ke roop me paas kia jaata h 
+
+syntax - 
+arr.forEach(callbackfunction())
+
+
+let arr = [1,2,3,4]
+
+arr.forEach(function(val)){
+    console.log(val);
+}
+
+forEach → method
+function(val) → callback function
+
+
+arrow function ke sath foreach - 
+
+let arr = [10,20,30];
+
+arr.forEach((val) => {
+   console.log(val);
+});
+
+
+
+----------------------------
+
+array.forEach((value, index, array) => {
+})
+
+-----------------------------
+
+
+HIGHER ORDER FUNCTIONS = 
+
+Higher Order Function (HOF) woh function hota hai jo:
+
+1️⃣ Function ko argument ke roop me accept kare
+ya 
+2️⃣ Function ko return kare
+Matlab function ke saath kaam karne wale functions.
+
+
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+function processUser(callback) {
+    callback("Satyam");
+}
+
+processUser(greet);
+
+greet is the call back function 
+processuser is the highter order function
+
+
+
+
+
+REAL EXAMPLES OF THE HIGHER ORDER FUNCTIONS  - 
+
+1️⃣ map() - 
+Har element par function apply karta hai aur new array return karta hai.
+
+let arr = [1,2,3]
+let result = arr.map((num) =>{
+    num * 2;
+})
+console.log(result); = [2,4,6];
+
+
+2️⃣ filter()
+Condition ke basis par elements select karta hai.
+
+let arr = [1,2,3,4,5]
+let result = arr.filter((num) =>{
+    num%2==0;
+})
+console.log(result) = [2,4];
+
+
+3️⃣ reduce()
+Array ko single value me convert karta hai.
+
+let arr = [1,2,3,4];
+let sum = arr.reduce((acc,val) => acc + val, 0);
+console.log(sum);
+
+where = 
+acc → accumulator
+val → current value
+
+
+
