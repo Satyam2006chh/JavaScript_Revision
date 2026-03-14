@@ -1,0 +1,552 @@
+1️⃣ Synchronous JavaScript = 
+
+Synchronous execution means JavaScript runs code line by line in order, and each instruction waits 
+for the previous one to finish before executing.
+
+👉 One task at a time
+👉 Next line waits for previous line
+
+
+console.log("Task 1");
+console.log("Task 2");
+console.log("Task 3");
+
+Task1
+Task2
+Task3
+
+
+2️⃣ Example of Blocking (Problem with Sync) = 
+
+console.log("Start");
+for(let i = 0; i < 1000000000; i++){}
+console.log("End");
+
+Start
+(wait for loop to finish)
+End
+
+
+
+3️⃣ Why Synchronous Code Can Be a Proble = 
+
+Some operations take time:
+
+API requests
+File reading
+Database queries
+Network calls
+timers
+
+If JavaScript waited for them synchronously:
+👉 The UI would freeze.
+
+
+The main problem is this =>
+
+Click button
+↓
+Wait 5 seconds for API
+↓
+Then UI updates
+
+
+
+
+4️⃣ Asynchronous JavaScript =  
+
+Asynchronous execution allows JavaScript to run tasks without blocking the execution of the rest of the program.
+
+Simple meaning:
+
+👉 Long tasks run in background
+👉 Other code continues executing
+
+
+console.log("Start")
+setTimeOut(function(){
+    console.log("Hello after the 4 second)
+}, 4000)
+
+console.log("End")
+
+OUTPUT = >
+
+Start
+End
+Hello after 3 seconds
+
+
+Notice something important:
+Even though the timer appears in the middle of the code,
+it runs last.
+
+
+==============================================================================
+
+1️⃣ What is setTimeout() in JavaScript
+
+setTimeout() is a JavaScript function that executes a piece of code after a specified delay (in milliseconds).
+Simple meaning:
+
+👉 Run this function after some time.
+
+
+
+console.log("Start");
+
+setTimeout(function(){
+    console.log("Hello after 3 seconds");
+},3000);
+
+console.log("End");
+
+
+Example with Arrow Function = 
+
+setTimeOut(() => {
+    console.log("Hello world")
+}, 4000)
+
+
+7️⃣ Example: Change Text After Delay  = 
+
+<h1 id="title">Hello</h1>
+setTimeOut(() => {
+    document.querySelector("#title").innerText = "Welcomee !!"
+}, 5000)
+
+
+
+
+==============================================================================
+
+IMPORTANT CONCEPT = 
+
+
+function sum(a, b) {
+    console.log(a + b);
+}
+
+function calculator(a, b, sumCallback) {
+    sumCallback(a, b);
+}
+
+calculator(1, 2, sum);
+
+
+
+==============================================================================
+
+CALLBACK HELL = 
+
+. A callback is just a function passed into another function.
+
+setTimeout(function(){
+   console.log("Hello");
+},2000);
+
+. Callback Hell happens when many callbacks are nested inside each other, making the code hard to read and manage.
+
+. It looks like a pyramid or staircase.
+. 💀 Pyramid of Doom
+
+
+
+5️⃣ Why Callback Hell Is Bad
+
+Problems:
+
+1️⃣ Hard to read
+2️⃣ Hard to debug
+3️⃣ Hard to maintain
+4️⃣ Too much nesting
+
+Example large projects become messy.
+
+
+function getData(dataId, getNextData) {
+
+    setTimeout(() => {
+
+        console.log("data", dataId);
+
+        if (getNextData) {
+            getNextData();
+        }
+
+    }, 2000);
+
+}
+
+
+// Calling functions (Callback Hell)
+
+getData(1, () => {
+    getData(2, () => {
+        getData(3);
+    });
+});
+
+
+
+
+================================================================
+
+PROMISES = 
+
+A Promise is an object in JavaScript that represents the result of an asynchronous operation that will finish in the future.
+
+
+
+let promise = new Promise((resolve,reject) =>{
+    
+});
+
+let promise = new Promise((resolve, reject) => {
+
+    console.log("Fetching data...");
+
+    resolve("Success");
+
+});
+
+
+6️⃣ Promise States - 
+
+PENDING              =>      MEANS TASK IS STILL RUNNING
+FULFILLED            =>      MEANS TASK IS COMPLTED
+REJECTED             =>      MEANS TASK IS FAILED
+
+
+
+let promise = new Promise((resolve,reject) =>{
+    setTimeOut(() => {
+        resolve("Completed task")
+    }, 2000)
+});
+
+promise.then((result) =>{
+    console.log(result)
+
+})
+
+
+callback hell solved using the promise and not fully solbed   = 
+
+function getData(dataId) {
+
+    return new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+
+            console.log("data", dataId);
+
+            resolve("success");
+
+        }, 2000);
+
+    });
+
+}
+
+
+// Promise chaining
+
+getData(1)
+.then(() => {
+    return getData(2);
+})
+.then(() => {
+    return getData(3);
+})
+.then(() => {
+    console.log("All data fetched");
+});
+
+
+
+2️⃣ .then() → Handles Success
+
+
+.then() runs when the Promise is resolved (successful).
+
+promise.then((res) => {
+   // code
+})
+
+
+let promise = new Promise((resolve,reject) => {
+    resolve("Success");
+})
+
+promise.then((res) => {
+    console.log(res);
+})
+
+
+
+3️⃣ .catch() → Handles Errors = 
+let promise = new Promise((resolve, reject) => {
+    reject("Error is there")
+})
+promise.catch((err) => {
+    console.log(err);
+})
+
+
+
+4️⃣ Real Example With setTimeout  - 
+
+let promise = new Promise((resolve,reject) => {
+    setTimeOut(() => {
+        resolve("Data loaded Successfully");
+    }, 3000)
+})
+promise.then((res) => {
+    console.log(res);
+})
+
+
+
+
+Solving the callback hell problemwith the help of the promisee
+
+function getdata(dataid){
+    return new Promise((resolve,reject) => {
+        setTimeOut(()=>{
+            console.log("Data id : ", dataid);
+            resolve("success");
+        }, 3000)
+    })
+}
+getData(1).then((res) => {
+    return getdata(2);
+}).then((res) =>{
+    return getdata(3);
+}).then((res) => {
+    return getdata(4);
+})
+
+
+
+
+====================================================================================
+
+
+1️⃣ What is async - 
+
+An async function always returns a Promise.
+
+
+async function myFunc() {
+}
+
+Even if u return the normal value JavaScript automatically wraps it inside the promise 
+
+async function greet(){
+    return "hello"
+}
+greet().then((res) =>{
+    console.log(res);
+})
+
+
+Because it internally behave like this  = 
+Promise.resolve("Hello)
+
+
+2️⃣ What is await = 
+
+await pauses the execution of the async function until the Promise is completed.
+
+Await can only be used inside the async function not any other function 
+
+
+
+function getData(){
+    return new Promise((resolve,reject) => {
+        setTimeOut(()=>{
+            console.log("Data  Loaded");
+            resolve("Success");
+        }, 3000)
+    })
+}
+async function getbuild(){
+    let result = await getData();
+    console.log(result);
+}
+
+getbuild()
+
+
+
+solving the code of the callback helll wit the help of the async and the await
+
+function getData(dataId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("data", dataId);
+      resolve();
+    }, 2000);
+  });
+}
+
+async function getAllData() {
+  await getData(1);
+  await getData(2);
+  await getData(3);
+}
+
+getAllData();
+
+
+
+But what if like u were supposed to be taking the data from the 2 different souces with the help of the async and the await and 
+now suppose the promise of the 1 req failed then what willl happen to the 2 one ???
+
+
+function data1(){
+    return new Promise((resolve,reject) => {
+        setTimeOut(() => {
+            reject("Api call failed");
+        }, 2000)
+    })
+}
+
+function data2(){
+    return new Promise((resolve,reject) => {
+        setTimeOut(() => {
+            resolve("Api call successfull");
+        }, 2000)
+    })
+}
+
+async function gettogether(){
+    let result1 = await data1();
+    console.log(result1);
+
+    let result2 = await data2();
+    console.log(result2)
+}
+
+gettogether();
+
+2️⃣ What Happens Here
+
+await getData1()
+        ↓
+Promise rejected
+        ↓
+ERROR occurs
+        ↓
+Function stops immediately
+
+
+
+Why This Happens
+
+Because await behaves like:
+
+wait for promise
+if rejected → throw error
+
+So when the first promise fails:
+
+await getData1()
+      ↓
+error thrown
+      ↓
+execution stops
+
+The next line is never executed.
+
+
+
+
+
+TO SOLVE THIS MEANS IF THE DATA1 NOT COMES BUT U WANT THAT THE FUNCTION MUST BE RUNNED FULLY  THEN U HAVE TO USE THIS - 
+
+
+async function fetchData() {
+
+  try {
+    let data1 = await getData1();
+    console.log(data1);
+  } catch (err) {
+    console.log("Error in API 1:", err);
+  }
+
+  let data2 = await getData2();
+  console.log(data2);
+
+}
+
+fetchData();
+
+
+
+======================================================================================
+
+
+1️⃣ What is Fetch API
+
+Fetch API is used to send a request to a server and receive data from it.
+
+In simple words:
+
+Browser → request → Server
+Server → response → Browser
+
+Example:
+
+Weather data
+User data
+Products from an e-commerce site
+News articles
+All these come from APIs using fetch.
+
+
+
+
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    console.log(data);
+});
+
+
+
+
+
+fetch("https://jsonplaceholder.typicode.com/users")
+
+.then((response) => {
+    return response.json();   // convert response to JSON
+})
+
+.then((data) => {
+    console.log(data);        // print data
+})
+
+.catch((error) => {
+    console.log("Error:", error);
+});
+
+
+
+
+
+async function getUsers(){
+
+    let response = await fetch("https://jsonplaceholder.typicode.com/users");
+
+    let data = await response.json();
+
+    console.log(data);
+
+}
+
+getUsers();
