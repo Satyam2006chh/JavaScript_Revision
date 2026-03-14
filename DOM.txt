@@ -1,0 +1,1382 @@
+When you run JavaScript in the browser, the window object is the main global object that represents the browser tab or window where your webpage is running.
+
+The window object is the top level container of everything in the browser envirronment 
+Everything related to the webpage lives inside it 
+
+
+
+1. Simple Definition - 
+
+window = the global object provided by the browser that contains all browser APIs, variables, functions, and DOM objects.
+
+So whenever your JavaScript runs in a browser, it is actually running inside window.
+
+
+console.log(window);
+This prints a huge object containing:
+
+document
+location
+history
+alert
+setTimeout
+localStorage
+navigator
+
+
+2. Everything Global Belongs to Window-
+var name = "Satyam";
+
+The browser actually stores it like this:
+
+window.name = "Satyam";
+
+So both are the same.
+console.log(name);         // Satyam
+console.log(window.name);  // Satyam
+
+
+
+3. Window Contains Important Browser Objects -
+
+1️⃣ Document Object- 
+
+window.document  is same as the document 
+
+document.getElementById("title")
+internally it is  - 
+window.document.getElementById("title")
+
+
+2️⃣ Alert / Prompt / Confirm - 
+
+alert("Hello");
+same for the   -
+window.alert("Hello");
+
+same for the  - prompt and the confirm 
+
+
+
+
+
+1. What is DOM -?
+
+DOM = Document Object Model
+
+It is a programming interface that represents the HTML page as objects so JavaScript can read and modify it.
+
+👉 DOM converts your HTML page into a tree of objects that JavaScript can manipulate.
+
+
+Document
+   |
+   html
+   |
+  /  \
+head  body
+ |      |
+title   h1
+          |
+        button
+
+4. Why DOM Exists
+
+Without DOM, JavaScript cannot interact with HTML.
+
+Example without DOM:
+HTML → just displays content
+
+Example with DOM:
+JavaScript → changes the page dynamically
+
+
+5. What is document?
+
+In JavaScript, the document object is the root of the DOM (Document Object Model) and represents the entire webpage loaded in the browser. It allows you to access, modify, and control HTML elements, attributes, styles, and events dynamically.
+
+The document object is automatically created by the browser when a webpage loads.
+
+It acts as the entry point to the DOM, giving developers programmatic access to the page’s structure.
+
+Every HTML element (<html>, <body>, <p>, <div>, etc.) is represented as a node in the DOM tree, and document is the owner of all these nodes.
+
+🔑 Key Features = 
+Access Elements
+Modify Content
+Create & Add Elements
+Handle Event
+
+
+
+<html>
+  <head>
+    <title>My Page</title>
+  </head>
+  <body>
+    <p id="demo">Hello!</p>
+  </body>
+</html>
+
+const para = document.getE
+
+lementById("demo");
+para.innerHTML = "Hello World!";
+
+
+
+1. console.log(document.body)
+This prints the HTML representation of the element.
+So the browser shows it like it appears in the DOM tree.
+Example output in console:
+<body>
+   <h1>Hello</h1>
+   <p>Welcome</p>
+</body>
+
+2. console.dir(document.body)
+This prints the JavaScript object representation of the DOM node.
+
+body
+  ├── accessKey
+  ├── attributes
+  ├── childNodes
+  ├── classList
+  ├── innerHTML
+  ├── style
+  ├── tagName
+  └── many more properties...
+
+You see all properties and methods of the DOM object.
+
+So console.dir() shows the object structure.
+
+
+3. Side-by-Side Difference
+console.log()	console.dir()
+Shows HTML element	Shows JS object
+Visual DOM structure	Object properties
+Looks like HTML code	Looks like an object tree
+Used for viewing elements	Used for debugging properties     
+
+
+Use console.log()
+
+When you want to see the element in the DOM.
+
+Use console.dir()
+
+When you want to inspect properties and methods.
+
+
+
+Try this in the browser console:
+
+console.dir(document);
+
+You will see hundreds of properties of the DOM document object.
+That’s the real JavaScript object behind the webpage.
+
+log → HTML view
+dir → object view
+
+-----------------------------------------------------
+
+1. What is document.body?
+
+document represents the whole HTML page.
+Inside that page, the body is the main visible part.
+document.body → gives the <body> element
+
+If you run:
+
+console.dir(document.body.style);
+
+backgroundColor
+color
+fontSize
+margin
+padding
+border
+
+These are JavaScript versions of CSS properties.
+
+changing the background colour of the body - 
+
+document.body.style.backgroundColor = "black";
+
+Another example:
+document.body.style.color = "white"; => all text colour will be white
+
+
+
+4. CSS vs JavaScript Syntax
+
+CSS:
+background-color: red;
+font-size: 20px;
+
+JavaScript:
+backgroundColor
+fontSize
+
+So hyphen (-) becomes camelCase.
+
+
+
+
+ACCESSING THE ELEMENTS  - DOM MANIPULATION -
+
+1️⃣ Selecting with ID - 
+
+document.getElementById("myId")
+
+
+I was doing the revsion of the js can u explain me that what is the window object
+
+When you run JavaScript in the browser, the window object is the main global object that represents the browser tab or window where your webpage is running.
+
+Think of it like this:
+
+👉 The window object is the top-level container of everything in the browser environment.
+
+Everything related to the webpage lives inside it.
+
+1. Simple Definition
+window = the global object provided by the browser that contains all browser APIs, variables, functions, and DOM objects.
+
+So whenever your JavaScript runs in a browser, it is actually running inside window.
+
+Example:
+
+console.log(window);
+This prints a huge object containing:
+
+document
+
+location
+
+history
+
+alert
+
+setTimeout
+
+localStorage
+
+navigator
+
+etc.
+
+2. Everything Global Belongs to Window
+If you declare a global variable:
+
+var name = "Satyam";
+The browser actually stores it like this:
+
+window.name = "Satyam";
+So both are the same.
+
+console.log(name);         // Satyam
+console.log(window.name);  // Satyam
+3. Window Contains Important Browser Objects
+1️⃣ Document Object
+Used to access HTML.
+
+window.document
+Same as:
+
+document
+Example:
+
+document.getElementById("title")
+Internally:
+
+window.document.getElementById("title")
+2️⃣ Alert / Prompt / Confirm
+These functions belong to window.
+
+alert("Hello");
+Actually:
+
+window.alert("Hello");
+Same for:
+
+prompt()
+confirm()
+3️⃣ Location (URL control)
+Used to control the current page URL.
+
+console.log(window.location.href);
+Example:
+
+window.location.href = "https://google.com";
+This redirects the page.
+
+4️⃣ setTimeout / setInterval
+Timers also belong to window.
+
+setTimeout(() => {
+    console.log("Hello");
+}, 2000);
+Actually:
+
+window.setTimeout(...)
+4. Window vs Document (Important Interview Question)
+Window	Document
+Represents browser tab	Represents HTML page
+Global object	Child of window
+Contains APIs	Contains DOM
+Top level	Inside window
+Structure:
+
+window
+   |
+   |---- document
+           |
+           |---- HTML elements
+Example:
+
+window.document.body
+5. Access Window Size
+Example:
+
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+6. Open New Window
+window.open("https://google.com");
+7. Window is the Global Scope
+In browser JavaScript:
+
+console.log(this === window);
+Output:
+
+true
+Because the global scope = window.
+
+8. Real Example
+console.log(window);
+
+console.log(window.document);
+console.log(window.location);
+console.log(window.navigator);
+console.log(window.innerWidth);
+9. Very Important Thing
+In browser JavaScript you usually don't write window. because it is implicit.
+
+So this:
+
+alert("Hello");
+document.getElementById("box");
+setTimeout(fn, 1000);
+Actually means:
+
+window.alert("Hello");
+window.document.getElementById("box");
+window.setTimeout(fn, 1000);
+10. Quick Real-Life Analogy
+Imagine a browser tab = a room.
+
+Inside that room you have:
+
+HTML page → document
+
+URL → location
+
+Browser info → navigator
+
+Storage → localStorage
+
+timers → setTimeout
+
+The room itself = window.
+
+Everything lives inside it.
+
+11. One Confusing Thing Beginners Face
+This code works:
+
+console.log(window.document);
+console.log(document);
+Both give the same result.
+
+Because:
+
+document = window.document
+12. One Small DOM Example
+<button onclick="show()">Click</button>
+
+<script>
+function show(){
+    alert(window.location.href);
+}
+</script>
+Here you are using the window API.
+
+✅ One-line summary
+
+window is the global object of the browser that contains the DOM, browser APIs, and all global JavaScript variables and functions.
+
+If you're revising JS, the next concept you should understand is:
+
+DOM vs BOM
+
+this in window
+
+window vs globalThis
+
+event loop
+
+These are very important for interviews and real projects.
+
+If you want, I can also explain the complete hierarchy
+
+window
+ ├── document (DOM)
+ ├── location
+ ├── history
+ ├── navigator
+ ├── localStorage
+ ├── sessionStorage
+ └── console
+in a way that makes DOM finally click in your brain.
+
+
+Now explain me what is dom in the js 
+
+When people say DOM in JavaScript, they are talking about how JavaScript sees and controls the HTML page.
+
+Let’s build the idea step-by-step.
+
+1. What is DOM?
+DOM = Document Object Model
+
+It is a programming interface that represents the HTML page as objects so JavaScript can read and modify it.
+
+In simple words:
+
+👉 DOM converts your HTML page into a tree of objects that JavaScript can manipulate.
+
+So JavaScript can:
+
+change text
+
+change styles
+
+add elements
+
+delete elements
+
+react to clicks
+
+2. Example HTML Page
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Page</title>
+</head>
+
+<body>
+<h1 id="title">Hello World</h1>
+<button>Click</button>
+</body>
+</html>
+When the browser loads this page, it creates a DOM tree.
+
+3. DOM Tree Structure
+The browser converts HTML into a tree structure like this:
+
+Document
+   |
+   html
+   |
+  /  \
+head  body
+ |      |
+title   h1
+          |
+        button
+Each HTML element becomes a node (object) in the DOM.
+
+4. Why DOM Exists
+Without DOM, JavaScript cannot interact with HTML.
+
+HTML alone is static.
+
+Example without DOM:
+
+HTML → just displays content
+Example with DOM:
+
+JavaScript → changes the page dynamically
+Example:
+
+document.getElementById("title").innerText = "Welcome Satyam";
+Now the webpage text changes without reloading the page.
+
+That is DOM manipulation.
+
+5. What is document?
+You learned earlier about the window object.
+
+Inside it:
+
+window
+   |
+document
+document represents the entire HTML page.
+
+Example:
+
+console.log(document);
+It prints the complete DOM tree.
+
+6. Accessing HTML Elements
+JavaScript can access elements using DOM methods.
+
+getElementById
+let title = document.getElementById("title");
+querySelector
+let heading = document.querySelector("h1");
+querySelectorAll
+let buttons = document.querySelectorAll("button");
+These methods return DOM nodes (objects).
+
+7. Changing Content
+Example HTML
+
+<h1 id="title">Hello</h1>
+JavaScript:
+
+document.getElementById("title").innerText = "Welcome";
+Result:
+
+Hello → Welcome
+8. Changing CSS
+Example:
+
+document.getElementById("title").style.color = "red";
+Now the heading becomes red.
+
+9. Creating New Elements
+DOM allows you to create elements dynamically.
+
+let p = document.createElement("p");
+
+p.innerText = "This is a new paragraph";
+
+document.body.appendChild(p);
+A new paragraph appears on the page.
+
+10. Removing Elements
+let element = document.getElementById("title");
+
+element.remove();
+The element disappears.
+
+11. Event Handling (Very Important)
+DOM also allows event handling.
+
+Example:
+
+<button id="btn">Click</button>
+JavaScript:
+
+document.getElementById("btn").addEventListener("click", function() {
+    alert("Button clicked!");
+});
+Now JavaScript reacts to user actions.
+
+12. DOM = Bridge Between HTML and JavaScript
+Think of it like this:
+
+HTML → structure
+CSS → styling
+JavaScript → behavior
+But JavaScript talks to HTML through the DOM.
+
+So the real connection is:
+
+JavaScript → DOM → HTML
+13. Real-World Example (Dark Mode)
+document.body.style.backgroundColor = "black";
+document.body.style.color = "white";
+Now the page becomes dark mode.
+
+This is DOM manipulation.
+
+14. DOM vs HTML
+Important concept.
+
+HTML	DOM
+Text file	Object representation
+Static	Dynamic
+Written by developer	Created by browser
+Example:
+
+HTML:
+
+<h1>Hello</h1>
+DOM representation:
+
+Object
+{
+  tagName: "H1",
+  innerText: "Hello"
+}
+15. Full Flow in Browser
+When a webpage loads:
+
+HTML file
+     ↓
+Browser parses HTML
+     ↓
+Creates DOM Tree
+     ↓
+JavaScript manipulates DOM
+     ↓
+Page updates dynamically
+16. The Most Important DOM Object
+The most used object:
+
+document
+Common properties:
+
+document.body
+document.head
+document.title
+document.links
+document.images
+Final Simple Definition
+DOM is the object representation of an HTML document that allows JavaScript to access and modify webpage elements dynamically.
+
+Since you are revising JavaScript, the next concepts that make DOM much clearer are:
+
+1️⃣ DOM Selectors (deep understanding)
+2️⃣ Event bubbling vs capturing
+3️⃣ Event delegation
+4️⃣ Node vs Element
+5️⃣ innerText vs textContent vs innerHTML
+
+These are the things that separate beginners from good JS developers.
+
+If you want, I can also show you the complete DOM roadmap that takes someone from beginner → advanced JS DOM in 1–2 days of practice.
+
+
+whats the difference between the console.log(document.body) and the console.dir(document.body)
+
+Both console.log() and console.dir() print something in the browser console, but they show different representations of the object.
+
+This difference becomes clear when you use them with DOM elements like document.body.
+
+1. console.log(document.body)
+console.log(document.body);
+This prints the HTML representation of the element.
+
+So the browser shows it like it appears in the DOM tree.
+
+Example output in console:
+
+<body>
+   <h1>Hello</h1>
+   <p>Welcome</p>
+</body>
+You see the element as HTML markup.
+
+So console.log() shows the element visually like it exists in the page.
+
+2. console.dir(document.body)
+console.dir(document.body);
+This prints the JavaScript object representation of the DOM node.
+
+Example output:
+
+body
+  ├── accessKey
+  ├── attributes
+  ├── childNodes
+  ├── classList
+  ├── innerHTML
+  ├── style
+  ├── tagName
+  └── many more properties...
+You see all properties and methods of the DOM object.
+
+So console.dir() shows the object structure.
+
+3. Side-by-Side Difference
+console.log()	console.dir()
+Shows HTML element	Shows JS object
+Visual DOM structure	Object properties
+Looks like HTML code	Looks like an object tree
+Used for viewing elements	Used for debugging properties
+4. Small Example
+HTML:
+
+<h1 id="title">Hello</h1>
+JavaScript:
+
+console.log(document.getElementById("title"));
+console.dir(document.getElementById("title"));
+console.log()
+Shows something like:
+
+<h1 id="title">Hello</h1>
+console.dir()
+Shows:
+
+h1#title
+  innerText: "Hello"
+  innerHTML: "Hello"
+  style: CSSStyleDeclaration
+  classList: DOMTokenList
+  ...
+5. When Developers Use Each
+Use console.log()
+When you want to see the element in the DOM.
+
+Example debugging:
+
+console.log(button);
+Use console.dir()
+When you want to inspect properties and methods.
+
+Example:
+
+console.dir(button);
+Then you can explore:
+
+innerText
+
+classList
+
+style
+
+attributes
+
+children
+
+6. One Interesting Thing
+Try this in the browser console:
+
+console.dir(document);
+You will see hundreds of properties of the DOM document object.
+
+That’s the real JavaScript object behind the webpage.
+
+7. Quick Summary
+console.log(element) → shows HTML element
+console.dir(element) → shows JS object properties
+or
+
+log → HTML view
+dir → object view
+💡 One thing many JS beginners don’t know:
+
+console.dir() is extremely useful for understanding how DOM elements actually work internally, especially when learning DOM manipulation and events.
+
+If you're revising JavaScript DOM, the next thing that will make things much clearer is understanding:
+
+Node vs Element
+
+HTMLCollection vs NodeList
+
+innerText vs textContent vs innerHTML
+
+These confuse almost every beginner but become very easy once explained properly.
+
+
+doc.body.style wala snjha'
+
+You’re talking about something like this:
+
+document.body.style
+Let’s break it down properly so it actually makes sense in your head.
+
+1. What is document.body?
+document represents the whole HTML page.
+
+Inside that page, the body is the main visible part.
+
+Example HTML:
+
+<body>
+   <h1>Hello</h1>
+</body>
+JavaScript can access it like this:
+
+console.log(document.body);
+So:
+
+document.body → gives the <body> element
+2. What is .style?
+Every HTML element has a style object.
+
+This object allows JavaScript to change CSS properties dynamically.
+
+So:
+
+document.body.style
+means:
+
+👉 Access the CSS styles of the body element
+
+If you run:
+
+console.dir(document.body.style);
+You will see many CSS properties like:
+
+backgroundColor
+color
+fontSize
+margin
+padding
+border
+These are JavaScript versions of CSS properties.
+
+3. Changing CSS using .style
+Example:
+
+document.body.style.backgroundColor = "black";
+Result:
+
+Page background → black
+Another example:
+
+document.body.style.color = "white";
+Result:
+
+All text → white
+4. CSS vs JavaScript Syntax
+CSS:
+
+background-color: red;
+font-size: 20px;
+JavaScript:
+
+backgroundColor
+fontSize
+So hyphen (-) becomes camelCase.
+
+Example:
+
+CSS	JavaScript
+background-color	backgroundColor
+font-size	fontSize
+margin-top	marginTop
+5. Real Example
+document.body.style.backgroundColor = "black";
+document.body.style.color = "white";
+document.body.style.fontSize = "20px";
+This will:
+
+Change background
+Change text color
+Change font size
+6. Small Interactive Example
+HTML
+
+<button onclick="darkMode()">Dark Mode</button>
+JavaScript
+
+function darkMode() {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+}
+Now clicking the button changes the theme.
+
+7. What .style Actually Is
+.style is a CSSStyleDeclaration object.
+
+It contains all CSS properties of the element.
+
+Example:
+
+console.dir(document.body.style);
+You will see:
+
+CSSStyleDeclaration
+  backgroundColor
+  border
+  color
+  display
+  fontSize
+  margin
+  padding
+  width
+8. Important Thing Beginners Miss
+.style only works for inline styles.
+
+Example:
+
+If HTML has:
+
+<body style="background: red">
+Then:
+
+document.body.style.backgroundColor
+will work.
+
+But if CSS comes from a CSS file, you need:
+
+getComputedStyle(element)
+Example:
+
+getComputedStyle(document.body).backgroundColor
+9. Quick Visual Summary
+document
+   ↓
+body
+   ↓
+style
+   ↓
+CSS properties
+Example:
+
+document.body.style.backgroundColor
+means
+
+HTML page → body → style → background color
+10. Short Example
+document.body.style.backgroundColor = "blue";
+document.body.style.color = "white";
+document.body.style.fontSize = "25px";
+This changes the entire page style dynamically.
+
+✅ One-line summary
+
+document.body.style → allows JavaScript to change the CSS of the <body> element.
+Since you're revising DOM, the next thing that will make everything click is understanding:
+
+document.querySelector()
+vs
+getElementById()
+vs
+getElementsByClassName()
+vs
+querySelectorAll()
+These are the most used DOM selectors in real projects.
+
+
+Uploaded image
+now explain me this 
+
+This slide is showing 3 basic ways to select elements from the DOM so JavaScript can manipulate them. Once JS selects an element, you can change its text, style, attributes, or events.
+
+Let’s go through them one by one.
+
+1️⃣ Selecting with ID
+
+document.getElementById("myId")-
+
+What it does
+It finds one element whose id is myId.
+Important rule
+
+⚠️ ID must be unique in the page.
+Only one element should have that ID
+So this function returns:
+ONE element 
+
+
+
+
+2️⃣ Selecting with Class
+
+document.getElementsByClassName("myClass")
+What it does
+It selects all elements that have the class myClass.
+
+
+
+<p class="text">Hello</p>
+<p class="text">World</p>
+
+let items = document.getElementByClassName("text")
+console.log(items) ==============> HTMLCollection(2) because there r the 2 elements only  \
+
+To access them:
+
+items[0].style.color = "blue";
+items[1].style.color = "green";
+
+This method returns:
+HTMLCollection
+Which behaves like an array but is not exactly an array.
+
+
+3️⃣ Selecting with Tag Name =
+
+What it does
+
+It selects all elements with that tag.
+
+<p>First</p>
+<p>Second</p>
+<p>Third</p>
+
+let paragraphs = document.getElementsByTagName("p"); 
+console.log(paragraphs) ============>  HTMLCollection(3)
+
+paragraphs[0].style.color = "red";
+paragraphs[1].style.color = "blue";
+
+
+Quick Comparison
+Method	Selects	Returns
+getElementById()	one element by ID	single element
+getElementsByClassName()	elements with same class	HTMLCollection
+getElementsByTagName()	elements with same tag	HTMLCollection
+
+
+Methods with plural "Elements" return multiple elements.
+
+Notice the difference:
+
+getElementById
+getElementsByClassName
+getElementsByTagName
+
+👉 Element → one
+👉 Elements → many
+
+
+
+1️⃣ document.querySelector() =
+
+It returns the first element that matches the selector.
+So even if 100 elements match, it will give only the first one.
+
+
+let heading = document.querySelector("#title");  = selecteing by the id  
+
+<p class="text">Hello</p>
+<p class="text">World</p>
+
+let para = document.querySelector(".text");
+this will be returning u the first para only 
+
+let p = document.querySelector("p"); ================> only the first p 
+
+
+
+2️⃣ document.querySelectorAll() =
+
+document.querySelectorAll("selector")
+
+This returns all matching elements.
+But it returns them as something called a:
+
+NodeList
+
+<p class="text">Hello</p>
+<p class="text">World</p>
+<p class="text">JavaScript</p>
+
+let paras = document.querySelectorAll(".text")
+console.log(paras)
+
+NodeList(3)
+
+
+You can access them like an array:
+
+paras[0]
+paras[1]
+paras[2]
+
+
+Or loop through them:
+
+paras.forEach(p => {
+    p.style.color = "red";
+});
+
+
+
+Key Difference
+Method	Returns
+querySelector()	first matching element
+querySelectorAll()	all matching elements
+
+
+
+The older methods like getElementById, getElementsByClassName, and getElementsByTagName 
+still work perfectly. But developers often prefer querySelector / querySelectorAll because 
+they are more flexible, consistent, and powerful.
+
+Let’s compare them clearly.
+
+
+
+
+Supports Full CSS Selectors = 
+
+This is the biggest advantage.
+querySelector understands CSS selector syntax.
+
+
+document.querySelector("div p");
+
+select a <p> inside a <div>
+
+document.querySelector("#container .card");
+select .card inside #container
+
+
+Older methods cannot do this directly.
+
+3️⃣ Advanced Selectors =
+You can select elements using very complex rules.
+document.querySelector("ul li:first-child");
+document.querySelector("input[type='text']");
+
+These are CSS selectors, so anything CSS can select, querySelector can select.
+Old methods cannot do this.
+
+-----------------------------------------------
+
+HTMLCollection → LIVE
+
+It updates automatically when DOM changes.
+
+
+NodeList → STATIC
+
+It does not update automatically.
+
+
+------------------------------------------------
+
+1️⃣ tagName-
+
+It returns the HTML tag name of the element.
+
+<h1 id="title">Hello</h1>
+
+let el = document.querySelector("#title");
+
+console.log(el.tagName);  =============> H1 
+
+2️⃣ innerText-
+
+Returns the visible text inside an element.
+It reads what the user actually sees on the page.
+
+<div id="box">
+  Hello
+  <p>World</p>
+</div>
+
+let el = document.getElementById("box");
+console.log(el.innerText);      ================> Hello World 
+
+Important behavior
+
+❗ It ignores hidden elements.
+
+
+<div id="box">
+  Hello
+  <p style="display:none">Secret</p>
+</div>
+
+console.log(document.getElementById("box").innerText);   =========> Hello
+
+But here the second paragraph is hidden 
+
+
+
+3️⃣ innerHTML
+Returns the HTML inside the element including tags.
+
+<div id="box">
+  <p>Hello</p>
+</div>
+
+let el = document.getElementById("box");
+console.log(el.innerHTML);     ====================> <p>Hello</p>
+
+
+You can also modify HTML = 
+document.getElementById("box").innerHTML = "<h2>New Title</h2>";
+
+Using innerHTML can replace entire DOM inside that element.
+
+4️⃣ textContent -
+
+Returns all textual content, including hidden text.
+
+<div id="box">
+  Hello
+  <p style="display:none">Secret</p>
+</div>
+
+console.log(document.getElementById("box").textContent);
+Hello
+Secret
+
+
+
+----------------------------------------------------------------------------------
+
+1️⃣ getAttribute()=
+
+What it does
+
+It gets the value of an HTML attribute.
+
+element.getAttribute("attributeName")
+
+
+<a id="link" href="https://google.com">Google</a>
+
+let el = document.getElementById("link");
+
+console.log(el.getAttribute("href"));   ===========================> https://google.com
+
+
+2️⃣ setAttribute() =
+
+It sets or changes the value of an attribute.
+
+element.setAttribute("attributeName", "value")
+
+<a id="link" href="https://google.com">Google</a>
+
+let el = document.getElementById("link");
+
+el.setAttribute("href", "https://youtube.com");
+
+Now the link changes to
+
+https://youtube.com
+
+
+
+3️⃣ node.style=
+
+This is used to change CSS styles using JavaScript.
+
+element.style.property = "value"
+
+<h1 id="title">Hello</h1>
+let el = document.getElementById("title");
+
+el.style.color = "red";
+
+====================================================================================
+
+1️⃣ Creating an Element -
+Before inserting something into the page, you first create it.
+
+let e1 = document.createElement("div")
+this creates a new div element in the memory but it is not yet visible in the page 
+
+
+let e1 = document.createElement("p")
+e1.innerText = "Hello world"
+
+Now we have created a paragraph but it is still not visible to the pages 
+to show it on the pages we must have to insert it into the DOM 
+
+
+
+2️⃣ append()-
+Adds element inside the node at the end
+
+<div id="box">
+   <p>A</p>
+</div>
+
+
+let el = document.createElement("p");
+el.innerText = "B";
+
+document.getElementById("box").append(el);
+
+
+RESULT = 
+<div id="box">
+   <p>A</p>
+   <p>B</p>
+</div>
+
+It will be added at the end 
+
+
+
+3️⃣ prepend()=
+Adds element inside the node at the beginning
+
+let el = document.createElement("p");
+el.innerText = "Start";
+
+document.getElementById("box").prepend(el);
+
+result = 
+
+<div id="box">
+   <p>Start</p>
+   <p>A</p>
+</div>
+
+
+
+4️⃣ before()= 
+Adds element before the selected node (outside)
+
+<p id="para">Hello</p>
+
+let el = document.createElement("p");
+el.innerText = "Before";
+let para = document.getElementById("para");
+para.before(el);
+
+
+<p>Before</p>
+<p id="para">Hello</p>
+
+The new element is inserted before the target element
+
+
+
+5️⃣ after()=
+Adds element after the selected node (outside)
+
+let el = document.createElement("p");
+el.innerText = "After";
+let para = document.getElementById("para");
+para.after(el);
+
+<p id="para">Hello</p>
+<p>After</p>
+
+
+
+6️⃣ Removing Elements
+
+This deletes an element from the DOM.
+
+
+<p id="para">Hello</p>
+let el = document.getElementById("para");
+
+el.remove();
+
+RESULT =>
+The paragraph disappears from the page.
+
+
+
+Quick Revision Table
+Method	Position
+append()	end inside element
+prepend()	beginning inside element
+before()	before element (outside)
+after()	after element (outside)
+remove()	deletes element
+
+
+
+=============================================================================
