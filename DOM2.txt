@@ -1,0 +1,320 @@
+1. What is an Event in JavaScript = 
+
+An event is a signal that something has happened in the browser,
+usually triggered by a user interaction or a browser action, which JavaScript can detect and respond to.
+
+In simpler words:
+👉 An event is an action or occurrence that happens in the browser.
+
+
+
+Examples:
+
+User clicks a button
+User presses a key
+Page finishes loading
+Form is submitted
+Mouse moves
+
+When these actions happen, the browser fires an event.
+JavaScript can listen to that event and run code in response.
+
+
+
+Someone presses the doorbell → event occurs
+The bell rings → notification
+You open the door → response
+
+
+========================================================================================
+
+3. Important Terms = 
+
+1️⃣ Event
+
+The action that occurs.
+Example:
+
+click
+keypress
+submit
+mouseover
+
+2️⃣ Event Listener
+
+A listener waits for an event to occur.
+Example:
+
+button.addEventListener("click", function)
+
+Meaning:
+"Listen for a click on this button."
+
+
+
+3️⃣ Event Handler
+
+The function that runs when the event happens.
+
+Example:
+
+function greet(){
+   alert("Button Clicked!")
+}
+
+Example = 
+
+let btn = document.getElementById("btn");
+
+btn.addEventListener("click", function(){
+    alert("Button Clicked!");
+});
+
+
+
+1️⃣ Mouse Events
+
+These occur when the user interacts with the mouse.
+
+Event	Meaning
+click	single mouse click
+dblclick	double click
+mouseover	mouse enters element
+mouseout	mouse leaves element
+mousemove	mouse moves
+mousedown	mouse button pressed
+mouseup	mouse button released
+
+
+1. What is Event Handling - 
+
+Event handling is the process of executing a specific piece 
+of code (function) when an event occurs on an element.
+
+👉 Event happens → JavaScript handles it with a function
+
+===================================
+
+node.event = () => {
+   // handle here
+}
+
+====================================
+
+<button id = "btn">Click Me !</button>
+
+let button = document.querySelector("#btn")
+button.onclick = () => {
+    console.log("Button was clicked")
+}
+
+What happens here
+
+1️⃣ JavaScript finds the button
+2️⃣ It attaches a click event handler
+3️⃣ When user clicks → function runs
+
+
+
+=========================================================================
+
+1️⃣ What is the Event Object ->
+
+The Event Object is a special object automatically 
+created by the browser whenever an event occurs, and it contains detailed i
+nformation about that event.
+
+In simple words:
+
+👉 When an event happens, the browser creates an object that stores all information about that event.
+
+2️⃣ Example to Understand
+
+User clicks a button.
+
+The browser stores information like:
+
+Which element was clicked
+What type of event happened
+Mouse position
+Time of event
+Which key was pressed
+All this information is stored inside Event Object.
+
+
+node.event = (e) => {
+   // handle here
+}
+
+
+
+let btn = document.querySelector("#btn");
+
+btn.onclick = (e) => {
+   console.log(e);
+};
+
+RESULT = 
+
+MouseEvent {
+ type: "click",
+ target: button,
+ clientX: 350,
+ clientY: 200
+}
+
+5️⃣ Important Properties of Event Object = 
+
+e.target  ->   It tells which element triggered the event.
+e.type    ->   It tells what type of event occurred.
+e.clientX ->   The horizontal position of the mouse pointer when the event occurred
+e.clientY ->   The vertical position of the mouse pointer when the event occurred.
+
+
+====================================================================
+
+1️⃣ What is an Event Listener =
+
+An event listener is a function that waits for a specific event
+to occur on an element and executes a callback function when that event happens.
+
+
+node.addEventListener(event, callback)
+
+<button id="btn">Click Me</button>
+
+let btn = document.querySelector("#btn");
+
+btn.addEventListener("click", function() {
+    console.log("Button clicked!");
+});
+
+
+4️⃣ Why addEventListener is Better
+
+Earlier method:
+
+btn.onclick = function(){
+   console.log("clicked");
+}
+
+Problem:
+
+❌ Only one event handler allowed
+
+
+btn.onclick = function(){
+   console.log("first");
+}
+
+btn.onclick = function(){
+   console.log("second");
+}
+
+HERE THE OUTPUT IS  - 
+secomd 
+
+MEans the first function gets overwritten thats the main problemm
+
+
+With addEventListener - 
+
+btn.addEventListener("click", function(){
+    console.log("first");
+})
+btn.addEventListener("click", function(){
+    console.log("Second");
+})
+
+HERE THE OUTPUT IS = 
+first 
+second 
+
+SO THE ADVANTAGES ARE = 
+
+✔ multiple listeners
+✔ cleaner code
+✔ industry standard
+
+====================================================================== 
+
+1️⃣ What is removeEventListener() = 
+
+removeEventListener() is a method used to remove a previously attached 
+event listener from an element so that the callback function no longer 
+executes when the event occurs.
+
+2️⃣ Why Do We Need It?
+
+Sometimes you only want an event temporarily.
+
+Examples:
+
+Disable button after clicking once
+Stop a game event
+Stop scrolling listener
+Stop animation triggers
+
+
+element.removeEventListener(event, callback)
+
+<button id="btn">Click Me</button>
+
+
+let btn = document.querySelector("#btn");
+
+function greet(){
+    console.log("Hello");
+}
+
+btn.addEventListener("click", greet);
+
+btn.removeEventListener("click", greet);
+
+Now when you click the button:
+👉 Nothing will happen
+
+
+
+
+======================================================
+
+dark mode and light mode me class List Problem solved =
+
+1️⃣ What is classList in JavaScript
+
+classList is a property of a DOM element that gives us methods to add, remove, toggle, and check CSS classes of that element.
+
+
+3️⃣ classList.add()
+Definition
+
+classList.add() adds a CSS class to an element.
+
+<div id="box">Hello</div>
+.dark{
+    background: black;
+    color: white;
+}
+
+let box = document.querySelector("#box");
+
+box.classList.add("dark");
+
+RESULT = 
+<div id="box" class="dark">Hello</div>
+
+
+4️⃣ classList.remove() = 
+
+classList.remove() removes a CSS class from an element.
+
+box.classList.remove("dark");
+
+RESULT = 
+<div id="box">Hello</div>
+
+
+==============================================================================
+
+
